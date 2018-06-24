@@ -1,29 +1,24 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-
-class What extends Component {
-    render() {
-        return (
-            <h1>heisann sveisann på degsann</h1>
-        )
-    }
-}
+import SimpleCard from './simplecard';
+import Graph from './graph';
+import StationData from './stationdata.js';
 
 class App extends Component {
-        
+    constructor() {
+        super();
+    }
+
+
     render() {
-        const wot = new What();
         return (
             <div className="App">
-                <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
-                    <h1 className="App-title">Welcome to React</h1>
-                </header>
-                <p className="App-intro">
-                    To get started, edit <code>src/App.js</code> and save to reload.
-                    {wot.render()}
-                </p>
+                <SimpleCard
+                    content={
+                        <Graph data={new StationData().getGraphJsData()} width="500" height="300"/>
+                    }
+                />
             </div>
 
         );
