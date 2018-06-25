@@ -17,7 +17,8 @@ import red from '@material-ui/core/colors/red';
 
 const styles = theme => ({
   card: {
-    maxWidth: 400,
+    maxWidth: '80%',
+    margin: '30px',
   },
   media: {
     height: 0,

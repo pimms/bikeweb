@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import CssBaseline from '@material-ui/core/CssBaseline';
+
 import logo from './logo.svg';
+
 import './App.css';
 import SimpleCard from './simplecard';
 import Graph from './graph';
@@ -14,9 +17,21 @@ class App extends Component {
     render() {
         return (
             <div className="App">
+                <CssBaseline />
                 <SimpleCard
                     content={
-                        <Graph data={new StationData().getGraphJsData()} width="500" height="300"/>
+                        <Graph
+                            data={new StationData().getGraphJsData()}
+                            width = "1000"
+                            height="300"/>
+                    }
+                />
+                <SimpleCard
+                    content={
+                        <Graph
+                            data={new StationData().getGraphJsData()}
+                            width = "1000"
+                            height="300"/>
                     }
                 />
             </div>
