@@ -63,15 +63,12 @@ class StationSearch extends Component {
     state = {
         initialItems: [],
         filteredItems: [],
-        focus: false,
     }
 
 
     constructor(props) {
         super(props);
         this.textChanged = this.textChanged.bind(this);
-        this.onFocus = this.onFocus.bind(this);
-        this.onBlur = this.onBlur.bind(this);
         this.itemClicked = this.itemClicked.bind(this);
         this.itemRemoved = this.itemRemoved.bind(this);
     }
@@ -93,21 +90,10 @@ class StationSearch extends Component {
         );
     }
 
-    onFocus(event) {
-        this.setState({
-            focus: true,
-        });
-    }
-
-    onBlur(event) {
-        this.setState({
-            focus: false,
-        })
-    }
-
     itemClicked(event, item) {
         console.log('item clicked! ', item.title);
         item.selected = true;
+        this.setState({});
     }
 
     itemRemoved(event, item) {
@@ -132,11 +118,6 @@ class StationSearch extends Component {
     }
 
     render() {
-        let listDom = '';
-        listDom = <List items={this.state.filteredItems}
-                        itemClicked={this.itemClicked}
-                        itemRemoved={this.itemRemoved}/>
-
         return (
             <div className="filter-list searchWrapper">
                 <div className="searchBoxWrapper">
@@ -145,13 +126,13 @@ class StationSearch extends Component {
                             <input  type="text"
                                     className="form-control form-control-lg"
                                     placeholder="Search"
-                                    onFocus={this.onFocus}
-                                    onBlur={this.onBlur}
                                     onChange={this.textChanged}/>
                         </fieldset>
                     </form>
                 </div>
-                {listDom}
+                <List items={this.state.filteredItems}
+                      itemClicked={this.itemClicked}
+                      itemRemoved={this.itemRemoved}/>
             </div>
         )
     }
