@@ -5,39 +5,46 @@ import logo from './logo.svg';
 
 import './App.css';
 import Bar from './appbar';
+import StationCard from './stationcard'
+
 import SimpleCard from './simplecard';
 import Graph from './graph';
 import StationData from './stationdata.js';
 
 class App extends Component {
-    constructor() {
-        super();
+    state = {
+        stationCards: []
     }
 
+
+    constructor() {
+        super();
+        this.stationChanged = this.stationChanged.bind(this);
+    }
+
+    stationChanged(station) {
+        let cards = this.state.stationCards.filter((c) => {
+            return c.props.station.selected;
+        });
+
+        if (station.selected) {
+            cards.push(
+                <StationCard station={station} />
+            );
+        }
+
+        this.setState({
+            stationCards: cards,
+        })
+    }
 
     render() {
         return (
             <div className="App">
                 <CssBaseline />
-                <Bar />
-                <SimpleCard
-                    content={
-                        <Graph
-                            data={new StationData().getGraphJsData()}
-                            width = "1000"
-                            height="300"/>
-                    }
-                />
-                <SimpleCard
-                    content={
-                        <Graph
-                            data={new StationData().getGraphJsData()}
-                            width = "1000"
-                            height="300"/>
-                    }
-                />
+                <Bar stationChanged={this.stationChanged} />
+                {this.state.stationCards}
             </div>
-
         );
     }
 }

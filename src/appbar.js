@@ -37,7 +37,7 @@ class Bar extends Component {
                         <Typography variant="title" color="inherit" className={classes.flex}>
                             B I K I E B O Y E
                         </Typography>
-                        <StationSearch />
+                        <StationSearch stationChanged={(i)=>this.props.stationChanged(i)} />
                     </Toolbar>
                 </AppBar>
             </div>

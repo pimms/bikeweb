@@ -11,8 +11,9 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
-
 import { withStyles } from '@material-ui/core/styles';
+
+import Clear from '@material-ui/icons/Clear';
 import red from '@material-ui/core/colors/red';
 
 const styles = theme => ({
@@ -62,11 +63,12 @@ class SimpleCard extends Component {
                             <Avatar className={classes.avatar}>L</Avatar>
                         }
                         action={
-                            <IconButton>
+                            <IconButton onClick={()=>alert('TODO, remove station')}>
+                                <Clear/>
                             </IconButton>
                         }
-                        title="Lodalen"
-                        subheader="Dyvekes vei"/>
+                        title={this.props.title}
+                        subheader={this.props.subtitle}/>
                     <CardMedia>
                         {this.props.content}
                     </CardMedia>

@@ -3,10 +3,6 @@ import StationData from './stationdata';
 var LineChart = require("react-chartjs").Line;
 
 class Graph extends Component {
-    constructor() {
-        super();
-    }
-
     render() {
         return (
             <div>

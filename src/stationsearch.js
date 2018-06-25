@@ -90,18 +90,6 @@ class StationSearch extends Component {
         );
     }
 
-    itemClicked(event, item) {
-        console.log('item clicked! ', item.title);
-        item.selected = true;
-        this.setState({});
-    }
-
-    itemRemoved(event, item) {
-        console.log('item removed! ', item.title);
-        item.selected = false;
-        this.setState({});
-    }
-
     textChanged(event) {
         const filter = event.target.value.toLowerCase();
 
@@ -115,6 +103,20 @@ class StationSearch extends Component {
         this.setState({
             filteredItems: updatedList,
         });
+    }
+
+    itemClicked(event, item) {
+        console.log('item clicked! ', item.title);
+        item.selected = true;
+        this.setState({});
+        this.props.stationChanged(item);
+    }
+
+    itemRemoved(event, item) {
+        console.log('item removed! ', item.title);
+        item.selected = false;
+        this.setState({});
+        this.props.stationChanged(item);
     }
 
     render() {
