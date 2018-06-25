@@ -1,24 +1,44 @@
 .searchWrapper:focus-within .searchList {
     display: block;
 }
-
 .searchList:focus-within {
     display: block;
 }
-
+.searchList:focus {
+    display: block;
+}
+.searchList:active {
+    display: block;
+}
 .searchList {
     color: black;
     position: absolute;
     z-index: 5;
+    display: none;
 }
+
+
+
+
+.selectedSearchListItem {
+    background-color: #ccc;
+}
+.selectedSearchListItem:hover {
+    background-color: #fda;
+}
+.selectedSearchListItem:active {
+    background-color: #f54;
+}
+
 
 .searchListItem:hover {
-    background-color: #aaddff;
+    background-color: #adf;
+}
+.searchListItem:active {
+    background-color: #45f;
 }
 
-.searchListItem:active {
-    background-color: #4455ff;
-}
+
 .searchListItem:active .searchResultSubtitle {
     color: #000;
 }

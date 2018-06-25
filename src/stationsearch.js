@@ -7,22 +7,53 @@ import Typography from '@material-ui/core/Typography';
 import Input from '@material-ui/core/Input';
 
 class List extends Component {
-    render() {
-        const listItems = this.props.items.map((item) => {
-            return <li  className="list-group-item searchListItem"
+    getUnselectedElems() {
+        return this.props.items
+            .filter((item) => {
+                return !item.selected;
+            })
+            .map((item) => {
+                return (
+                    <li className="list-group-item searchListItem"
                         category="station"
                         onClick={(e) => {this.props.itemClicked(e, item)}}
-                        key={item.id}>
-                {item.title}
-                <div className="searchResultSubtitle">
-                    {item.subtitle}
-                </div>
-            </li>
-        });
+                        key={item.id}
+                    >
+                        {item.title}
+                        <div className="searchResultSubtitle">
+                            {item.subtitle}
+                        </div>
+                    </li>
+                )
+            });
+    }
 
+    getSelectedElems() {
+        return this.props.items
+            .filter((item) => {
+                return item.selected;
+            })
+            .map((item) => {
+                return  (
+                    <li className="list-group-item searchListItem selectedSearchListItem"
+                        category="station"
+                        onClick={(e) => {this.props.itemRemoved(e, item)}}
+                        key={item.id}
+                    >
+                        {item.title}
+                        <div className="searchResultSubtitle">
+                            {item.subtitle}
+                        </div>
+                    </li>
+                )
+            });
+    }
+
+    render() {
         return (
             <ul className="list-group searchList">
-                {listItems}
+                {this.getSelectedElems()}
+                {this.getUnselectedElems()}
             </ul>
         );
     }
@@ -31,7 +62,7 @@ class List extends Component {
 class StationSearch extends Component {
     state = {
         initialItems: [],
-        items: [],
+        filteredItems: [],
         focus: false,
     }
 
@@ -40,16 +71,21 @@ class StationSearch extends Component {
         super(props);
         this.textChanged = this.textChanged.bind(this);
         this.onFocus = this.onFocus.bind(this);
+        this.onBlur = this.onBlur.bind(this);
         this.itemClicked = this.itemClicked.bind(this);
+        this.itemRemoved = this.itemRemoved.bind(this);
     }
 
     componentDidMount() {
         fetch("http://bikeapi.stienjoa.kim/stations")
             .then(res => res.json())
             .then((res) => {
+                res.forEach(i => {
+                    i.selected = false;
+                })
                 this.setState({
                     initialItems: res,
-                    items: res
+                    filteredItems: res
                 });
             }, (err) => {
                 alert('Error: ' + err)
@@ -63,11 +99,21 @@ class StationSearch extends Component {
         });
     }
 
-    itemClicked(event, item) {
-        console.log('item clicked! ', item.title);
+    onBlur(event) {
         this.setState({
             focus: false,
         })
+    }
+
+    itemClicked(event, item) {
+        console.log('item clicked! ', item.title);
+        item.selected = true;
+    }
+
+    itemRemoved(event, item) {
+        console.log('item removed! ', item.title);
+        item.selected = false;
+        this.setState({});
     }
 
     textChanged(event) {
@@ -81,14 +127,15 @@ class StationSearch extends Component {
 
 
         this.setState({
-            items: updatedList,
+            filteredItems: updatedList,
         });
     }
 
     render() {
         let listDom = '';
-        if (this.state.focus)
-            listDom = <List items={this.state.items} itemClicked={this.itemClicked} />
+        listDom = <List items={this.state.filteredItems}
+                        itemClicked={this.itemClicked}
+                        itemRemoved={this.itemRemoved}/>
 
         return (
             <div className="filter-list searchWrapper">
@@ -99,6 +146,7 @@ class StationSearch extends Component {
                                     className="form-control form-control-lg"
                                     placeholder="Search"
                                     onFocus={this.onFocus}
+                                    onBlur={this.onBlur}
                                     onChange={this.textChanged}/>
                         </fieldset>
                     </form>
