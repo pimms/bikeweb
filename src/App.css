@@ -1,28 +1,36 @@
-.App {
-  text-align: center;
+.searchWrapper:focus-within .searchList {
+    display: block;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 2s linear;
-  height: 80px;
+.searchList:focus-within {
+    display: block;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.searchList {
+    color: black;
+    position: absolute;
+    z-index: 5;
 }
 
-.App-title {
-  font-size: 1.5em;
+.searchListItem:hover {
+    background-color: #aaddff;
 }
 
-.App-intro {
-  font-size: large;
+.searchListItem:active {
+    background-color: #4455ff;
+}
+.searchListItem:active .searchResultSubtitle {
+    color: #000;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.searchResultSubtitle {
+    color: #999999;
+    font-size: 70%;
 }
+
+.searchBoxWrapper {
+    margin-top: auto;
+    margin-bottom: auto;
+    height: 48px;
+}
+
