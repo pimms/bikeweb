@@ -28,9 +28,8 @@ class App extends Component {
         });
 
         if (station.selected) {
-            cards.push(
-                <StationCard station={station} />
-            );
+            const jsx = <StationCard station={station} />;
+            cards.push(jsx);
         }
 
         this.setState({

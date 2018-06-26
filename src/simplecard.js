@@ -17,29 +17,6 @@ import Clear from '@material-ui/icons/Clear';
 import red from '@material-ui/core/colors/red';
 
 const styles = theme => ({
-  card: {
-    maxWidth: '80%',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    margin: '30px',
-  },
-  media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
-  },
-  actions: {
-    display: 'flex',
-  },
-  expand: {
-    transform: 'rotate(0deg)',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-    marginLeft: 'auto',
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
   avatar: {
     backgroundColor: red[500],
   },
@@ -57,7 +34,7 @@ class SimpleCard extends Component {
 
         return (
             <div>
-                <Card className={classes.card}>
+                <Card className="card">
                     <CardHeader
                         avatar = {
                             <Avatar className={classes.avatar}>L</Avatar>
@@ -69,9 +46,9 @@ class SimpleCard extends Component {
                         }
                         title={this.props.title}
                         subheader={this.props.subtitle}/>
-                    <CardMedia>
+                    <div>
                         {this.props.content}
-                    </CardMedia>
+                    </div>
                 </Card>
             </div>
 

@@ -52,3 +52,37 @@
     height: 48px;
 }
 
+
+.chartWrapper {
+    margin: 30px;
+    height: 300px;
+}
+
+.card {
+    margin: 30px;
+}
+
+.appBarTitle {
+    flex: 1;
+}
+
+@media(max-width: 768px) {
+    .chartWrapper {
+        margin-left: 4px;
+        margin-right: 4px;
+        margin-top: 10px;
+        margin-bottom: 4px;
+    }
+    .card {
+        margin-left: 4px;
+        margin-right: 4px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .appBarTitle {
+        display: none !important;
+    }
+    .chartWrapper {
+        height: 150px;
+    }
+}

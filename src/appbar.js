@@ -15,9 +15,6 @@ const styles = {
   root: {
     flexGrow: 1,
   },
-  flex: {
-    flex: 1,
-  },
   menuButton: {
     marginLeft: -12,
     marginRight: 20,
@@ -34,7 +31,7 @@ class Bar extends Component {
                         <IconButton className={classes.menuButton} color="inherit">
                             <MenuIcon />
                         </IconButton>
-                        <Typography variant="title" color="inherit" className={classes.flex}>
+                        <Typography variant="title" color="inherit" className="appBarTitle">
                             B I K I E B O Y E
                         </Typography>
                         <StationSearch stationChanged={(i)=>this.props.stationChanged(i)} />

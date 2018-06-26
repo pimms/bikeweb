@@ -5,10 +5,10 @@ var LineChart = require("react-chartjs").Line;
 class Graph extends Component {
     render() {
         return (
-            <div>
+            <div className="chartWrapper">
                 <LineChart
                     data={this.props.data}
-                    options={this.props.options}
+                    options={{responsive:true, maintainAspectRatio:false}}
                     width={this.props.width}
                     height={this.props.height}/>
             </div>
