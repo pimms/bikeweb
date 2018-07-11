@@ -16,11 +16,11 @@ class StationCard extends Component {
         dateString = dateString.split(' ').slice(0, 4).join(' ');
         const from = new Date(dateString).toISOString();
         const to = new Date(dateString + ' 23:59:59').toISOString();
-        return 'http://bikeapi.stienjoa.kim/stations/history?from='+from+'&to='+to+'&id='+this.props.station.id+'&dsm=15';
+        return 'http://bikeapi.stienjoa.kim/api/stations/history?from='+from+'&to='+to+'&id='+this.props.station.id+'&dsm=15';
     }
 
     createPredictionUrl() {
-        return 'http://bikeapi.stienjoa.kim/stations/prediction?id='+this.props.station.id+'&dsm=15';
+        return 'http://bikeapi.stienjoa.kim/api/stations/prediction?id='+this.props.station.id+'&dsm=15';
     }
 
     handleBikeApiResult(history, prediction) {

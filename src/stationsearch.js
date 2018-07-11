@@ -74,7 +74,7 @@ class StationSearch extends Component {
     }
 
     componentDidMount() {
-        fetch("http://bikeapi.stienjoa.kim/stations")
+        fetch("http://bikeapi.stienjoa.kim/api/stations")
             .then(res => res.json())
             .then((res) => {
                 res.forEach(i => {
